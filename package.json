@@ -1,0 +1,23 @@
+{
+  "name": "cat-watcher",
+  "version": "1.0.0",
+  "description": "cat gifs for cat lovers",
+  "main": "src/server.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start":"node src/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gminova/cat-watcher.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gminova/cat-watcher/issues"
+  },
+  "homepage": "https://github.com/gminova/cat-watcher#readme"
+}
