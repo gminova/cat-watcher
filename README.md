@@ -1,2 +1,1 @@
-# cat-watcher
-cat gifs for cat lovers
+# search-gifs :mag:
