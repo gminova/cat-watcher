@@ -19,7 +19,6 @@ let query = input => {
   xhr.onreadystatechange = function() {
     if (xhr.readyState == 4 && xhr.status == 200) {
       const response = JSON.parse(xhr.responseText);
-      console.log(response);
       gifs(response);
     }
   };
