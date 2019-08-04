@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node src/server.js",
     "test": "node src/tests.js | tap-spec",
-    "report-coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov",
+    "report-coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov -t dd3cd05f-5ead-41fb-98f1-f4884fd74b74",
     "coverage": "nyc npm run test",
     "lint": "eslint ."
   },
