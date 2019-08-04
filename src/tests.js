@@ -105,7 +105,22 @@ test("Does client GET request return 200 status code", t => {
 });
 
 //404 ROUTE
-test("404 route", t => {
+test("Should return 404 status code", t => {
+  supertest(router)
+    .get("/fvdfvgd")
+    .expect(404)
+    .end((err, res) => {
+      t.error(err);
+      t.equal(
+        res.statusCode,404,
+        "Should return 404 status code"
+      );
+      t.end();
+    });
+});
+
+//404 ROUTE
+test("Should return 404 Page Not Found", t => {
   supertest(router)
     .get("/fhkwefhe")
     .expect(404)
@@ -114,7 +129,7 @@ test("404 route", t => {
       t.equal(
         res.text,
         `<h1>404: Page Not Found</h1>`,
-        "Should return 404 page not found"
+        "Should return 404 Page Not Found"
       );
       t.end();
     });
