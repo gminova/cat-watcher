@@ -6,6 +6,7 @@
   "scripts": {
     "start": "node src/server.js",
     "test": "node src/tests.js | tap-spec",
+    "report-coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov",
     "coverage": "nyc npm run test",
     "lint": "eslint ."
   },
@@ -20,6 +21,7 @@
   },
   "homepage": "https://github.com/gminova/cat-watcher#readme",
   "devDependencies": {
+    "codecov": "^3.5.0",
     "dotenv": "^8.0.0",
     "eslint": "^6.1.0",
     "nock": "^10.0.6",
