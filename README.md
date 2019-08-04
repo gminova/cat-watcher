@@ -34,5 +34,5 @@ npm run coverage
 ![](https://i.imgur.com/4lLOI3d.jpg)
 ![](https://i.imgur.com/3LRB6uV.jpg)
 
-## CI and Deployment
-Travis CI and Heroku
+## Tech stack
+HTML, CSS, JavaScript, Node.js, Git & GitHub, Travis CI, npm, supertest, nock, nyc, eslint and Heroku
