@@ -65,16 +65,6 @@ test("Public route should render favicon", t => {
     });
 });
 
-//Public route - status code 500
-test("Error on server side", t => {
-  supertest(router)
-    .get("/public/missing.js")
-    .expect(500)
-    .end((err, res) => {
-      t.equal(res.statusCode, 500, "Error on server side");
-      t.end();
-    });
-});
 //Public route - error response text
 test("Public route should return error", t => {
   supertest(router)
@@ -82,6 +72,7 @@ test("Public route should return error", t => {
     .expect(500)
     .end((err, res) => {
       t.error(err);
+      t.equal(res.statusCode, 500, "Error on server side");
       t.equal(
         res.text,
         "<h1>500: Internal Server Error</h1>",
@@ -94,27 +85,12 @@ test("Public route should return error", t => {
 //Query route
 test("Does client GET request return 200 status code", t => {
   supertest(router)
-    .get("/query")
+    .get("/query?=")
     .expect(200)
     .expect("Content-type", /html/)
     .end((err, res) => {
       t.error(err);
       t.equal(res.statusCode, 200, "Request route should return 200");
-      t.end();
-    });
-});
-
-//404 ROUTE
-test("Should return 404 status code", t => {
-  supertest(router)
-    .get("/fvdfvgd")
-    .expect(404)
-    .end((err, res) => {
-      t.error(err);
-      t.equal(
-        res.statusCode,404,
-        "Should return 404 status code"
-      );
       t.end();
     });
 });
@@ -126,6 +102,7 @@ test("Should return 404 Page Not Found", t => {
     .expect(404)
     .end((err, res) => {
       t.error(err);
+      t.equal(res.statusCode, 404, "Should return 404 status code");
       t.equal(
         res.text,
         `<h1>404: Page Not Found</h1>`,
@@ -163,46 +140,47 @@ test("myRequest fetches data correctly", t => {
 
 test("myRequest fetches JSON", t => {
   nock("https://api.exchangeratesapi.io/")
-    .get("/latest")
+    .get("/2010-01-12")
     .reply(200, {
       rates: {
-        CAD: 1.4698,
-        HKD: 8.6924,
-        ISK: 136.3,
-        PHP: 57.307,
-        DKK: 7.466,
-        HUF: 326.96,
-        CZK: 25.763,
-        AUD: 1.6365,
-        RON: 4.7345,
-        SEK: 10.7223,
-        IDR: 15772.45,
-        INR: 77.34,
-        BRL: 4.2958,
-        RUB: 72.5055,
-        HRK: 7.3815,
-        JPY: 118.57,
-        THB: 34.157,
-        CHF: 1.0931,
-        SGD: 1.529,
-        PLN: 4.3014,
+        CAD: 1.4959,
+        HKD: 11.2301,
+        LVL: 0.7093,
+        PHP: 66.106,
+        DKK: 7.4405,
+        HUF: 268.18,
+        CZK: 26.258,
+        AUD: 1.5668,
+        RON: 4.1405,
+        SEK: 10.2215,
+        IDR: 13281.14,
+        INR: 66.21,
+        BRL: 2.5309,
+        RUB: 42.6974,
+        LTL: 3.4528,
+        JPY: 132.41,
+        THB: 47.839,
+        CHF: 1.4743,
+        SGD: 2.0133,
+        PLN: 4.0838,
         BGN: 1.9558,
-        TRY: 6.2221,
-        CNY: 7.7058,
-        NOK: 9.9105,
-        NZD: 1.7026,
-        ZAR: 16.3271,
-        USD: 1.1106,
-        MXN: 21.4542,
-        ILS: 3.8786,
-        GBP: 0.91505,
-        KRW: 1333.44,
-        MYR: 4.6173
+        TRY: 2.1084,
+        CNY: 9.8863,
+        NOK: 8.1825,
+        NZD: 1.9573,
+        ZAR: 10.8264,
+        USD: 1.4481,
+        MXN: 18.4995,
+        EEK: 15.6466,
+        GBP: 0.8972,
+        KRW: 1627.4,
+        MYR: 4.8424,
+        HRK: 7.2753
       },
       base: "EUR",
-      date: "2019-08-02"
+      date: "2010-01-12"
     });
-  myRequest("http://api.ratesapi.io/api/latest", (error, response) => {
+  myRequest("https://api.exchangeratesapi.io/2010-01-12", (error, response) => {
     t.error(error);
     t.equal(
       response.statusCode,

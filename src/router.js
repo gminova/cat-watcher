@@ -7,7 +7,7 @@ const router = (req, res) => {
     handleHome(req, res, endpoint);
   } else if (endpoint.indexOf("public") !== -1) {
     handlePublic(req, res, endpoint);
-  } else if(endpoint.startsWith("/query")) {
+  } else if(endpoint.startsWith("/query?=")) {
     handleQuery(req, res, endpoint);
   }else {
     res.writeHead(404);
