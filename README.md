@@ -1,5 +1,7 @@
 # [Search for gifs](https://search-gifs.herokuapp.com/) :mag:
 [![Build Status](https://travis-ci.org/gminova/search-gifs.svg?branch=master)](https://travis-ci.org/gminova/search-gifs)
+[![codecov](https://codecov.io/gh/gminova/search-gifs/branch/master/graph/badge.svg)](https://codecov.io/gh/gminova/search-gifs)
+![Heroku](https://heroku-badge.herokuapp.com/?app=search-gifs)
 
 ## Installation 
 ```
@@ -28,6 +30,9 @@ Testing was done using supertest, nock and nyc for coverage
 npm run coverage
 ```
 ![](https://i.imgur.com/ybjEY7n.png)
+```
+ npm run report-coverage
+```
 
 ## Screenshots
 
