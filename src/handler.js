@@ -9,8 +9,8 @@ function handleHome(req, res) {
   const filePath = path.join(__dirname, "..", "public", "index.html");
   fs.readFile(filePath, (err, file) => {
     if (err) {
-      res.writeHead(500, { "content-type": "text/html" });
-      res.end("<h1>500: Internal Server Error</h1>");
+      res.writeHead(404, { "content-type": "text/html" });
+      res.end("<h1>404: Page Not Found</h1>");
     } else {
       res.writeHead(200, { "content-type": "text/html" });
       res.end(file);
@@ -20,6 +20,7 @@ function handleHome(req, res) {
 
 function handlePublic(req, res, endpoint) {
   const extension = endpoint.split(".")[1];
+  //MIME Types
   const extensionType = {
     html: "text/html",
     css: "text/css",
@@ -32,8 +33,8 @@ function handlePublic(req, res, endpoint) {
   const filePath = path.join(__dirname, "..", endpoint);
   fs.readFile(filePath, (err, file) => {
     if (err) {
-      res.writeHead(500, { "content-type": "text/html" });
-      res.end("<h1>500: Internal Server Error</h1>");
+      res.writeHead(404, { "content-type": "text/html" });
+      res.end("<h1>404: Page Not Found</h1>");
     } else {
       res.writeHead(200, { "content-type": extensionType[extension] });
       res.end(file);

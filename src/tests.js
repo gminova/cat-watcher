@@ -66,17 +66,17 @@ test("Public route should render favicon", t => {
 });
 
 //Public route - error response text
-test("Public route should return error", t => {
+test("Public route should return 404: Page Not Found", t => {
   supertest(router)
     .get("/public/missing")
-    .expect(500)
+    .expect(404)
     .end((err, res) => {
       t.error(err);
-      t.equal(res.statusCode, 500, "Error on server side");
+      t.equal(res.statusCode, 404, "404: Page Not Found");
       t.equal(
         res.text,
-        "<h1>500: Internal Server Error</h1>",
-        "Public route should return error"
+        "<h1>404: Page Not Found</h1>",
+        "Public route should return 404: Page Not Found"
       );
       t.end();
     });
