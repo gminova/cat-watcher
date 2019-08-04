@@ -1,4 +1,5 @@
 # [Search for gifs](https://search-gifs.herokuapp.com/) :mag:
+[![Build Status](https://travis-ci.org/gminova/search-gifs.svg?branch=master)](https://travis-ci.org/gminova/search-gifs)
 
 ## Installation 
 ```
@@ -22,7 +23,7 @@ npm start
 ```
 npm test
 ```
-[![Build Status](https://travis-ci.org/gminova/search-gifs.svg?branch=master)](https://travis-ci.org/gminova/search-gifs)
+Testing was done using supertest, nock and nyc for coverage
 ```
 npm run coverage
 ```
@@ -32,3 +33,6 @@ npm run coverage
 
 ![](https://i.imgur.com/4lLOI3d.jpg)
 ![](https://i.imgur.com/3LRB6uV.jpg)
+
+## CI and Deployment
+Travis CI and Heroku
