@@ -27,3 +27,8 @@ npm test
 npm run coverage
 ```
 ![](https://i.imgur.com/ybjEY7n.png)
+
+## Screenshots
+
+![](https://i.imgur.com/4lLOI3d.jpg)
+![](https://i.imgur.com/3LRB6uV.jpg)
