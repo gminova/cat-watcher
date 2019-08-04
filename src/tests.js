@@ -13,7 +13,7 @@ test("Testing tape", t => {
 
 //SERVER ROUTES
 
-//Home route
+//Home route - html
 test("Home route should return status code 200", t => {
   supertest(router)
     .get("/")
@@ -26,7 +26,7 @@ test("Home route should return status code 200", t => {
     });
 });
 
-//Public route
+//Public route - css
 test("Public route should render css", t => {
   supertest(router)
     .get("/public/style.css")
@@ -39,7 +39,7 @@ test("Public route should render css", t => {
     });
 });
 
-//Public route
+//Public route - javascript
 test("Public route should render js", t => {
   supertest(router)
     .get("/public/index.js")
@@ -52,18 +52,44 @@ test("Public route should render js", t => {
     });
 });
 
-//Public route
+//Public route - favicon
 test("Public route should render favicon", t => {
-    supertest(router)
-      .get("/public/favicon.ico")
-      .expect(200)
-      .expect("Content-type", /x-ico/)
-      .end((err, res) => {
-        t.error(err);
-        t.equal(res.statusCode, 200, "Public route should render favicon");
-        t.end();
-      });
-  });
+  supertest(router)
+    .get("/public/favicon.ico")
+    .expect(200)
+    .expect("Content-type", /x-ico/)
+    .end((err, res) => {
+      t.error(err);
+      t.equal(res.statusCode, 200, "Public route should render favicon");
+      t.end();
+    });
+});
+
+//Public route - status code 500
+test("Error on server side", t => {
+  supertest(router)
+    .get("/public/missing.js")
+    .expect(500)
+    .end((err, res) => {
+      t.equal(res.statusCode, 500, "Error on server side");
+      t.end();
+    });
+});
+//Public route - error response text
+test("Public route should return error", t => {
+  supertest(router)
+    .get("/public/missing")
+    .expect(500)
+    .end((err, res) => {
+      t.error(err);
+      t.equal(
+        res.text,
+        "<h1>500: Internal Server Error</h1>",
+        "Public route should return error"
+      );
+      t.end();
+    });
+});
 
 //Query route
 test("Does client GET request return 200 status code", t => {
@@ -87,7 +113,7 @@ test("404 route", t => {
       t.error(err);
       t.equal(
         res.text,
-        `<h1>404 page not found</h1>`,
+        `<h1>404: Page Not Found</h1>`,
         "Should return 404 page not found"
       );
       t.end();

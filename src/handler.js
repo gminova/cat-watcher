@@ -7,9 +7,8 @@ function handleHome(req, res) {
   const filePath = path.join(__dirname, "..", "public", "index.html");
   fs.readFile(filePath, (err, file) => {
     if (err) {
-      console.log(err);
       res.writeHead(500, { "content-type": "text/html" });
-      res.end("<h1>Sorry, we had an error on our end!</h1>");
+      res.end("<h1>500: Internal Server Error</h1>");
     } else {
       res.writeHead(200, { "content-type": "text/html" });
       res.end(file);
@@ -31,7 +30,8 @@ function handlePublic(req, res, endpoint) {
   const filePath = path.join(__dirname, "..", endpoint);
   fs.readFile(filePath, (err, file) => {
     if (err) {
-      console.log(err);
+      res.writeHead(500, { "content-type": "text/html" });
+      res.end("<h1>500: Internal Server Error</h1>");
     } else {
       res.writeHead(200, { "content-type": extensionType[extension] });
       res.end(file);
@@ -45,7 +45,8 @@ let handleQuery = (req, res) => {
 
   myRequest(url, (err, resAPI) => {
       if(err) {
-          res.end ("Unable to fetch data.");
+        res.writeHead(400, { "content-type": "text/html" });
+        res.end("<h1>400: Bad Request</h1>");
       } else {
           res.writeHead(resAPI.statusCode, { "content-type": "text/html" });
           res.end(JSON.stringify(resAPI.body.data));

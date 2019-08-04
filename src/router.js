@@ -12,7 +12,7 @@ const router = (req, res) => {
   }else {
     res.writeHead(404);
     res.end(
-      `<h1>404 page not found</h1>`
+      `<h1>404: Page Not Found</h1>`
     );
   }
 };
