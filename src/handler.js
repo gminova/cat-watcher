@@ -1,6 +1,8 @@
 const fs = require("fs");
 const path = require("path");
-const env = require("dotenv").config();
+if (process.env.NODE_ENV !== "production") {
+  require("dotenv").config();
+}
 const { myRequest } = require("./api");
 
 function handleHome(req, res) {
@@ -41,16 +43,18 @@ function handlePublic(req, res, endpoint) {
 
 let handleQuery = (req, res) => {
   const input = req.url.split("=")[1];
-  const url = `http://api.giphy.com/v1/gifs/search?q=${input}&api_key=${process.env.GIPHY_KEY}`;
+  const url = `http://api.giphy.com/v1/gifs/search?q=${input}&api_key=${
+    process.env.GIPHY_KEY
+  }`;
 
   myRequest(url, (err, resAPI) => {
-      if(err) {
-        res.writeHead(400, { "content-type": "text/html" });
-        res.end("<h1>400: Bad Request</h1>");
-      } else {
-          res.writeHead(resAPI.statusCode, { "content-type": "text/html" });
-          res.end(JSON.stringify(resAPI.body.data));
-      }
+    if (err) {
+      res.writeHead(400, { "content-type": "text/html" });
+      res.end("<h1>400: Bad Request</h1>");
+    } else {
+      res.writeHead(resAPI.statusCode, { "content-type": "text/html" });
+      res.end(JSON.stringify(resAPI.body.data));
+    }
   });
 };
 
