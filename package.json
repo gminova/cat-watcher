@@ -21,7 +21,7 @@
   },
   "homepage": "https://github.com/gminova/cat-watcher#readme",
   "devDependencies": {
-    "codecov": "^3.5.0",
+    "codecov": "^3.6.5",
     "dotenv": "^8.0.0",
     "eslint": "^6.1.0",
     "nock": "^10.0.6",
